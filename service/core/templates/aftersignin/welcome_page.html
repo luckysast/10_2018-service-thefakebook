@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+   <tbody>
+      <tr>
+         <td>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+               <tbody>
+                  <tr>
+                     <td class="white" bgcolor="#3B5998">Welcome {{ username }}!</td>
+                  </tr>
+               </tbody>
+            </table>
+            <center>
+               <p class="title">[ Welcome {{ username }} ]</p>
+               <center>
+                  <table width="95%" cellspacing="0" cellpadding="0" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <center>
+                                 <table class="bordertable" width="90%" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                <tbody>
+                                                   <tr>
+                                                      <td class="white" bgcolor="#3B5998">Friend Requests</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                             &nbsp;<br>
+                                             <center>
+                                                <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                                   <tbody>
+                                                      <tr>
+                                                         <td>
+                                                             <center>
+
+                                                             You have received
+                                                                    {% if count_rr == 0 %}
+                                                                    <b>No</b> friend requests.
+                                                                    {% else %}
+                                                                        <a href="/friends/requests"><font color="black"><b>{{ count_rr }}</b> friend requests</font></a>.
+                                                                    {% endif %}
+                                                                   <br>&nbsp;
+                                                             </center>
+                                                         </td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                             </center>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <br>&nbsp;
+                                 <center>
+                                    <table class="bordertable" width="90%" cellspacing="0" cellpadding="0">
+                                       <tbody>
+                                          <tr>
+                                             <td>
+                                                <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                   <tbody>
+                                                      <tr>
+                                                         <td class="white" bgcolor="#3B5998">Pokes</td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                                &nbsp;<br>
+                                                <center>
+                                                   <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td>
+                                                                <center>
+
+                                                                You have received <b>No</b> pokes.
+                                                                     <br>&nbsp;
+                                                                </center>
+
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </center>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <br>&nbsp;
+                                    <center>
+                                       <table class="bordertable" width="90%" cellspacing="0" cellpadding="0">
+                                          <tbody>
+                                             <tr>
+                                                <td>
+                                                   <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td class="white" bgcolor="#3B5998">Your Friends</td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                   &nbsp;<br>
+                                                   <center>
+                                                      <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                                         <tbody>
+                                                            <tr>
+                                                               <td>
+                                                                   <center>
+                                                                   {% if count_fr == 0 %}
+                                                                   You don't any friends right now.
+                                                                   {% else %}
+                                                                   You have <b>{{ count_fr }}</b> friends.
+                                                                   {% endif %}
+
+                                                                        <br>&nbsp;
+                                                                   </center>
+                                                               </td>
+                                                            </tr>
+                                                         </tbody>
+                                                      </table>
+                                                   </center>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                       <br>&nbsp;
+                                    </center>
+                                 </center>
+                              </center>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </center>
+            </center>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+{% endblock %}

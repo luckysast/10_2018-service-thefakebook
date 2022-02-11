@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+   <tbody>
+      <tr>
+         <td>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+               <tbody>
+                  <tr>
+                     <td class="white" bgcolor="#3B5998">Your Friends</td>
+                  </tr>
+               </tbody>
+            </table>
+            <center>
+               <p class="title">[ Your Friends ]</p>
+               <center>
+                   <table width="85%" cellspacing="0" cellpadding="2" border="0">
+                       {% for profile in profiles %}
+                       <tr>
+                           <td><center><img width="30pt" height="30pt" src="{{ profile.avatar }}"></center></td>
+                           <td width="300"><a href="/profile/{{ profile.id }}">{% if profile.user.is_superuser %}<font color="#ff4500"><b>{{ profile.name }}</b></font>{% else %}{{ profile.name }}{% endif %}</a></td>
+                           <td align="center">
+                               <a href="/profile/{{ profile.id }}/remove_from_friend">[ Remove friend ]</a> <br>
+                               <a href="/messages/{{ profile.id }}">[ Send a message ]</a>
+                           </td>
+                       </tr>
+                       {% endfor %}
+                   </table>
+                    <br>
+               </center>
+            </center>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+{% endblock %}

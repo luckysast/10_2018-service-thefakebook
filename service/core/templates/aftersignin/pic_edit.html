@@ -1,0 +1,231 @@
+{% extends 'aftersignin/../base.html' %}
+{% block content %}
+<table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+   <tbody>
+      <tr>
+         <td>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+               <tbody>
+                  <tr>
+                     <td class="white" bgcolor="#3B5998">Profile (This is you)</td>
+                  </tr>
+               </tbody>
+            </table>
+
+             <table cellpadding="8">
+                 <tbody>
+                 <tr>
+                     <td width="35%" valign="top">
+
+                     <table class="bordertable" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                              <tbody>
+                                 <tr>
+                                    <td class="white" bgcolor="#3B5998">Picture</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           &nbsp;<br>
+                           <center>
+                              <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                           <form method="post" action="/profile/pic_edit" enctype="multipart/form-data">
+                                               {% csrf_token %}
+                                          <center>
+                                             <img width="150pt" src="{{ avatar }}">
+                                             <br>
+                                              {% if error %}<font color="red">{{ error }}</font><br>{% endif %}&nbsp;
+                                              <input id="pic" name="picture" class="inputsubmit" style="opacity: 0; height:20%; width: 20%;" type="file" size="10">
+                                              <label  for="pic">Choose your photo!</label>
+                                              <input value="Update now!" class="inputsubmit" type="submit">
+                                              <br>
+                                          </center>
+                                           </form>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </center>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+                     <br>
+                     <table class="bordertable" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                              <tbody>
+                                 <tr>
+                                    <td class="white" bgcolor="#3B5998">Connection</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           &nbsp;<br>
+                           <center>
+                              <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                 <tbody>
+                                    <tr>
+                                       <td><center>
+                                       It's you
+                                           </center>
+                                           <br>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+
+                           </center>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+                     </td>
+
+<td width="2000" valign="top" align="right">
+                     <table class="bordertable" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                              <tbody>
+                                 <tr>
+                                    <td class="white" bgcolor="#3B5998" align="left">Information</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           &nbsp;<br>
+                           <center>
+                              <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                              <table>
+                                                  <tbody>
+                                                  <tr>
+                                                      <td><b>Account Info:</b></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Name:</td>
+                                                      <td>{% if profile.user.is_superuser %}<font color="#ff4500"><b>{{ profile.account_info.name }}</b></font>{% else %}{{ profile.account_info.name }}{% endif %}</td>
+
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Member Since:</td>
+                                                      <td>{{ profile.account_info.member_since }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Last Updated:</td>
+                                                      <td>{{ profile.account_info.last_update }}</td>
+                                                  </tr>
+
+                                                  <tr><td>&nbsp;</td><td></td></tr>
+
+                                                  <tr>
+                                                      <td><b>Basic Info:</b></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>School:</td>
+                                                      {% if profile.basic_info.get_school_display %}
+                                                      <td>{{ profile.basic_info.get_school_display }}</td>
+                                                      {% else %}
+                                                      <td></td>
+                                                      {% endif %}
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Email:</td>
+                                                      <td>{{ email }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Status:</td>
+                                                      <td>{{ profile.basic_info.get_status_display }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Sex:</td>
+                                                      <td>{{ profile.basic_info.get_sex_display }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Birthday:</td>
+                                                      {% if profile.basic_info.birthday %}
+                                                      <td>{{ profile.basic_info.birthday }}</td>
+                                                      {% else %}
+                                                      <td></td>
+                                                      {% endif %}
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Home Town:</td>
+                                                      <td>{{ profile.basic_info.hometown }}</td>
+                                                  </tr>
+                                                  <tr><td>&nbsp;</td><td></td></tr>
+
+                                                  <tr>
+                                                      <td><b>Extented Info:</b></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Looking For:</td>
+                                                      <td>{{ profile.contact_info.looking_for }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Interested For:</td>
+                                                      <td>{{ profile.contact_info.interested_for }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Political Views:</td>
+                                                      <td>{{ profile.contact_info.political_views }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Interests:</td>
+                                                      <td>{{ profile.contact_info.interests }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Clubs And Jobs:</td>
+                                                      <td>{{ profile.contact_info.clubs_and_jobs }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Favorite Books:</td>
+                                                      <td>{{ profile.contact_info.favorite_books }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Favorite Movies:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                      <td>{{ profile.contact_info.favorite_movies }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>About Me:</td>
+                                                      <td>{{ profile.contact_info.about_me }}</td>
+                                                  </tr>
+
+
+                                                  </tbody>
+                                              </table>
+
+
+
+                                             <br>&nbsp;
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </center>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+</td>
+                 </tr>
+                 </tbody>
+             </table>
+
+         </td>
+      </tr>
+   </tbody>
+</table>
+{% endblock %}

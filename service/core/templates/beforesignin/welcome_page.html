@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+        <tbody>
+           <tr>
+              <td>
+                 <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                    <tbody>
+                       <tr>
+                          <td class="white" bgcolor="#3B5998">Welcome to Thefakebook!</td>
+                       </tr>
+                    </tbody>
+                 </table>
+                 <center>
+                    <p class="title">[ Welcome to Thefakebook ]<br>&nbsp;
+                    <table width="95%" cellspacing="0" cellpadding="0" border="0">
+                       <tbody>
+                          <tr>
+                             <td class="larger">
+                                Thefakebook is an online directory that connects people through social networks at colleges.
+                                <p>We have recently opened up Thefakebook at the following schools:</p>
+                                <p></p>
+                                <center>
+                                   <table cellspacing="2" cellpadding="0" border="0">
+                                      <tbody>
+                                         <tr>
+                                            <td class="medium">
+                                               <center>Adelphi • Albion • AUP • Austin College • Belmont • Bridgewater State</center>
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="medium">
+                                               <center>Cambridge • Chapman • Dominican • Drake • Duquesne • Fashion Institute</center>
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="medium">
+                                               <center>Long Island • LSE • Millersville • New School • Ohio Northern</center>
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="medium">
+                                               <center>Oxford • Polytechnic • Ramapo • Rhodes • Roger Williams</center>
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="medium">
+                                               <center>San Jose State • SHSU • Siena • SMSU • Spelman • St. Andrews</center>
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="medium">
+                                               <center>St. Josephs • Stonehill • Surrey • TCD • Truman State • UNC Charlotte</center>
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="medium">
+                                               <center>Ursinus</center>
+                                            </td>
+                                         </tr>
+                                      </tbody>
+                                   </table>
+                                   &nbsp;
+                                </center>
+                                For a complete list of supported schools, click <a class="larger-a" href="/schools_supported">here</a>.<br><br>Your facebook is limited to your own college or university.
+                                <p>You can use Thefakebook to:<br>&nbsp;<b>•</b>&nbsp; Search for people at your school<br>&nbsp;<b>•</b>&nbsp; Find out who is in your classes<br>&nbsp;<b>•</b>&nbsp; Look up your friends' friends<br>&nbsp;<b>•</b>&nbsp; See a visualization of your social network</p>
+                                <p>To get started, click below to register.  If you have already registered, you can log in.</p>
+                                <center><input class="inputsubmit" value="Register" onclick='javascript:document.location="/register";' type="button">&nbsp;&nbsp;<input class="inputsubmit" value=" Login " type="button"><br>&nbsp;</center>
+                             </td>
+                          </tr>
+                       </tbody>
+                    </table>
+                    <script type="text/javascript" language="JavaScript">
+                       document.getElementById('email').focus()
+                       if(document.getElementById('email').value) document.getElementById('pass').focus();
+                    </script>
+                    </p>
+                 </center>
+              </td>
+           </tr>
+        </tbody>
+     </table>
+
+{% endblock %}

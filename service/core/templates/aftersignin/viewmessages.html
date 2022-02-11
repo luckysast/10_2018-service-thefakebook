@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+   <tbody>
+      <tr>
+         <td>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+               <tbody>
+                  <tr>
+                     <td class="white" bgcolor="#3B5998">Messages</td>
+                  </tr>
+               </tbody>
+            </table>
+            <center>
+               <br>
+               <center>
+                  <table width="95%" cellspacing="0" cellpadding="0" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                           <center>
+                                                                         <table class="bordertable" width="90%" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                <tbody>
+                                                   <tr>
+                                                      <td class="white" bgcolor="#3B5998">Send a message to {{ friend_name }}</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                             <center>
+                                                <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                                   <tbody>
+                                                             <form method=post>
+                                                                 {% csrf_token %}
+                                                                    <tr>
+                                                                        <td>Subject:</td>
+                                                                        <td><input type=text class="inputtext" style="width:353px" name="subject" value=""></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Message:</td>
+                                                                        <td><textarea style="overflow:auto;resize:none" class="inputtextarea" rows="6" cols="48" name="text"></textarea></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign=stop colspan=2>
+                                                                            <center><input align="center" type=submit name=send value="Send a message!" class="inputsubmit"></center>
+                                                                            <br>
+                                                                        </td>
+                                                                    <tr>
+                                                                </form>
+                                                             &nbsp;
+                                                   </tbody>
+                                                </table>
+                                             </center>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+
+
+                                 <br>
+                               <center>
+                                  <table class="bordertable" width="90%" cellspacing="0" cellpadding="0">
+                                          <tbody>
+                                             <tr>
+                                                <td>
+                                                   <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td class="white" bgcolor="#3B5998">Messages between you and {{ friend_name }}</td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                   &nbsp;<br>
+                                                   <center>
+                                                      <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                                                        <tbody>
+                                                                        {% for message in messages %}
+                                                                            <tr valign=stop>
+                                                                                <td width="50px" align=left valign="top" >
+                                                                                    <br>
+                                                                                    <img width="30pt" height="30pt" src="{{ message.profile.avatar }}">
+                                                                                </td>
+                                                                                <td width="420px" align=left>
+                                                                                    <a href="/profile/{{ message.profile.id }}">{{ message.profile.name }}</a>
+                                                                                    <br> "{{ message.time }}"
+                                                                                    <br> <b>"{{ message.title }}"</b>
+                                                                                    <br> {{ message.body }}
+                                                                                    <br>
+                                                                                    <br>
+                                                                                </td>
+                                                                                <td width="300px" align=right style='color:#538ADC'>
+                                                                                    [ <a href="#Sorry, I'm lazy">Remove</a> ]
+                                                                                </td>
+                                                                            </tr>
+                                                                        {% endfor %}
+
+                                                                    </table>
+                                                   </center>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+
+                                       <br>&nbsp;
+                                    </center>
+                                 </center>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </center>
+            </center>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+   <tbody>
+      <tr>
+         <td>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+               <tbody>
+                  <tr>
+                     <td class="white" bgcolor="#3B5998">Messages</td>
+                  </tr>
+               </tbody>
+            </table>
+            <center>
+               <center>
+                  <table width="95%" cellspacing="0" cellpadding="0" border="0">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <br>
+                              <center>
+                                 <table class="bordertable" width="90%" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                <tbody>
+                                                   <tr>
+                                                      <td class="white" bgcolor="#3B5998">Message Center</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                             <br>
+                                             <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                                   <tbody>
+                                                      <tr>
+                                                         <td>
+                                                            <center>
+                                                               [ <a href="messages?count=0">All Messages</a> ]
+                                                               <br>
+                                                               <br>
+                                                            </center>
+                                                         </td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <br>
+                                 <center>
+                                    <table class="bordertable" width="90%" cellspacing="0" cellpadding="0">
+                                       <tbody>
+                                          <tr>
+                                             <td>
+                                                <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                                                   <tbody>
+                                                      <tr>
+                                                         <td class="white" bgcolor="#3B5998">Messages from {{ mess_count }} last people</td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                                <br>
+                                                <center>
+                                                   <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                                      <tbody>
+                                                         {% for message in messages %}
+                                                         <tr valign=stop>
+                                                            <td width="50px" align=left valign="top" >
+                                                               <br>
+                                                               <img width="30pt" height="30pt" src="{{ message.profile.avatar }}">
+                                                            </td>
+                                                            <td width="420px" align=left>
+                                                               <a href="/profile/{{ message.profile.id }}">{{ message.profile.name }}</a>
+                                                               <br> "{{ message.time }}"
+                                                               <br> <b>"{{ message.title }}"</b>
+                                                               <br> {{ message.body | safe }}
+                                                               <br>
+                                                               <br>
+                                                            </td>
+                                                            <td width="150px" align=right style='color:#538ADC'>
+                                                               [ <a href="/messages/{{ message.profile.id }}">All Messages </a>
+                                                               {% if message.count %}<font color="#00008b">+{{ message.count }}</font>{% endif %} ]
+                                                            </td>
+                                                         </tr>
+                                                         {% endfor %}
+                                                   </table>
+                                                   <br>
+                                                </center>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </center>
+                              </center>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <br>&nbsp;
+                  </center>
+               </center>
+         </td>
+      </tr>
+   </tbody>
+</table>
+{% endblock %}

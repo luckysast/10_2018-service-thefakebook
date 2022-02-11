@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+   <tbody>
+      <tr>
+         <td>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+               <tbody>
+                  <tr>
+                     <td class="white" bgcolor="#3B5998">Registration</td>
+                  </tr>
+               </tbody>
+            </table>
+            <center>
+               <table width="95%" cellspacing="0" cellpadding="0" border="0">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <center>
+                              <table width="90%" cellspacing="0" cellpadding="0" border="0">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          &nbsp;<br>
+                                          To register for thefakebook.com, just fill in the four fields below.  You will
+                                          have a chance to enter additional information and submit a picture once you
+                                          have registered.
+                                          <p></p>
+                                          <center>
+                                             <form method="post" action="/register">
+                                                 {% csrf_token %}
+                                                <table cellspacing="0" cellpadding="0" border="0">
+                                                   <tbody>
+                                                      <tr>
+                                                         <td>
+                                                            <table cellspacing="0" cellpadding="2" border="0">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>Name:</td>
+                                                                     <td><input class="inputtext" name="name" value="" size="30" type="text"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>Status:</td>
+                                                                     <td>
+                                                                        <select class="inputtext" name="status">
+                                                                           <option value="1">Student (Full-Time)</option>
+                                                                           <option value="5">Grad Student</option>
+                                                                           <option value="2">Alumnus/Alumna</option>
+                                                                           <option value="3">Faculty</option>
+                                                                           <option value="4">Staff</option>
+                                                                        </select>
+                                                                     </td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>Email: (school)</td>
+                                                                     <td><input class="inputtext" name="email" value="" size="30" type="text"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>Password*: (choose)&nbsp;</td>
+                                                                     <td><input class="inputtext" name="pass" size="30" type="password"></td>
+                                                                  </tr>
+                                                                  <!--<tr height=8><td></td><td></td></tr>-->
+                                                               </tbody>
+                                                            </table>
+                                                         </td>
+                                                      </tr>
+                                                      <tr>
+                                                         <td>
+                                                            <table cellspacing="0" cellpadding="3" border="0">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td><input name="terms" value="1" type="checkbox"></td>
+                                                                     <td>
+                                                                        I have read and understood the <a href="/terms_of_use">Terms of Use</a>,
+                                                                        and I<br>agree to them.
+                                                                     </td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td valign="top" align="right">*</td>
+                                                                     <td>You can choose any password. <font color="red">It
+                                                                        should not be your school password.</font>
+                                                                     </td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                                <p>
+                                                    {% if error %}<font color="red">{{ error }}</font><br>{% endif %}
+
+                                                   <input value="Register Now!" class="inputsubmit" type="submit">
+                                                </p>
+                                             </form>
+                                          </center>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </center>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </center>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="bordertable" width="100%" cellspacing="0" cellpadding="0" border="1">
+   <tbody>
+      <tr>
+         <td>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+               <tbody>
+                  <tr>
+                     <td class="white" bgcolor="#3B5998">Profile (This is you)</td>
+                  </tr>
+               </tbody>
+            </table>
+
+             <table cellpadding="8">
+                 <tbody>
+                 <tr>
+                     <td width="35%" valign="top">
+
+                     <table class="bordertable" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                              <tbody>
+                                 <tr>
+                                    <td class="white" bgcolor="#3B5998">Picture</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           &nbsp;<br>
+                           <center>
+                              <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <center>
+                                             <img width="150pt" src="{{ avatar }}">
+                                             <br>&nbsp;
+                                          </center>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </center>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+
+                     <br>
+
+                      <table class="bordertable" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                              <tbody>
+                                 <tr>
+                                    <td class="white" bgcolor="#3B5998">Connection</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           &nbsp;<br>
+                           <center>
+                              <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                 <tbody>
+                                    <tr>
+                                       <td><center>
+                                       It's you
+                                           </center>
+                                           <br>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+
+                           </center>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+                     </td>
+
+<td width="2000" valign="top" align="right">
+                     <table class="bordertable" width="100%" cellspacing="0" cellpadding="0">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                              <tbody>
+                                 <tr>
+                                    <td class="white" bgcolor="#3B5998">Information</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           &nbsp;<br>
+                           <center>
+                              <table width="95%" cellspacing="0" cellpadding="2" border="0">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                                <form method="post" action="/profile/edit">
+                                                {% csrf_token %}
+                                              <table>
+
+
+                                                  <tbody>
+                                                  <tr>
+                                                      <td><b>Account Info:</b></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Name:</td>
+                                                      <td><input class="inputtext" name="name" value="{{ profile.account_info.name }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Member Since:</td>
+                                                      <td>{{ profile.account_info.member_since }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Last Updated:</td>
+                                                      <td>{{ profile.account_info.last_update }}</td>
+                                                  </tr>
+
+                                                  <tr><td>&nbsp;</td><td></td></tr>
+
+                                                  <tr>
+                                                      <td><b>Basic Info:</b></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>School:</td>
+                                                      <td>
+                                                          <select class="inputtext" name="school">
+                                                          {% for no, name in schools %}
+                                                          <option value="{{ no }}"
+                                                                  {% if profile.basic_info.school == no %}
+                                                                  selected="selected"{% endif %}
+                                                          >{{ name }}</option>
+                                                          {% endfor %}
+                                                           </select>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Email:</td>
+                                                      <td>{{ email }}</td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Status:</td>
+                                                      <td>
+                                                          <select class="inputtext" name="status">
+                                                          {% for no, name in statuses %}
+                                                          <option value="{{ no }}"
+                                                                  {% if profile.basic_info.status == no %}
+                                                                  selected="selected"{% endif %}
+                                                          >{{ name }}</option>
+                                                          {% endfor %}
+                                                           </select>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Sex:</td>
+                                                      <td>
+                                                          <select class="inputtext" name="sex">
+                                                          {% for no, name in sexs %}
+                                                          <option value="{{ no }}"
+                                                                  {% if profile.basic_info.sex == no %}
+                                                                  selected="selected"{% endif %}
+                                                          >{{ name }}</option>
+                                                          {% endfor %}
+                                                           </select>
+                                                      </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Birthday:</td>
+                                                      {% if profile.basic_info.birthday %}
+                                                      <td><input class="inputtext" name="birthday" value="{{ profile.basic_info.birthday|date:"Y-m-d" }}" size="30" type="text"></td>
+                                                      {% else %}
+                                                      <td><input class="inputtext" name="birthday" size="30" type="text"></td>
+                                                      {% endif %}
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Home Town:</td>
+                                                      <td><input class="inputtext" name="hometown" value="{{ profile.basic_info.hometown }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr><td>&nbsp;</td><td></td></tr>
+
+                                                  <tr>
+                                                      <td><b>Extented Info:</b></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Looking For:</td>
+                                                      <td><input class="inputtext" name="looking_for" value="{{ profile.contact_info.looking_for }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Interested For:</td>
+                                                      <td><input class="inputtext" name="interested_for" value="{{ profile.contact_info.interested_for }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Political Views:</td>
+                                                      <td><input class="inputtext" name="political_views" value="{{ profile.contact_info.political_views }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Interests:</td>
+                                                      <td><input class="inputtext" name="interests" value="{{ profile.contact_info.interests }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Clubs And Jobs:</td>
+                                                      <td><input class="inputtext" name="clubs_and_jobs" value="{{ profile.contact_info.clubs_and_jobs }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Favorite Books:</td>
+                                                      <td><input class="inputtext" name="favorite_books" value="{{ profile.contact_info.favorite_books }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>Favorite Movies:</td>
+                                                      <td><input class="inputtext" name="favorite_movies" value="{{ profile.contact_info.favorite_movies }}" size="30" type="text"></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>About Me:</td>
+                                                      <td><input class="inputtext" name="about_me" value="{{ profile.contact_info.about_me }}" size="30" type="text"></td>
+                                                  </tr>
+
+
+
+                                                  </tbody>
+
+
+                                              </table>
+                                                <center>
+                                                    {% if error %}<font color="red">{{ error }}</font><br>{% endif %}
+                                                   <input value="Update Now!" class="inputsubmit" type="submit">
+                                                </center>
+                                                </form>
+
+
+                                             <br>&nbsp;
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </center>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+</td>
+                 </tr>
+                 </tbody>
+             </table>
+
+         </td>
+      </tr>
+   </tbody>
+</table>
+{% endblock %}
